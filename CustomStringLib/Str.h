@@ -14,7 +14,7 @@ private:
 public:
 	Str();
 	Str(const char* str);
-	Str(char& str);
+	Str(char str);
 	Str(const Str& other);
 	~Str();
 

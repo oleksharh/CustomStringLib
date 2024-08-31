@@ -41,7 +41,7 @@ Str::Str(const char* str)
 	Copy(str);
 }
 
-Str::Str(char& str)
+Str::Str(char str)
 {
 	static char str_arr[2] = { str, '\0' };
 	Copy(str_arr);
