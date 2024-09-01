@@ -95,7 +95,62 @@ Str Str::substr(size_t start, size_t end) const
 	return new_str;
 }
 
+// TODO: YET TO BE IMPLEMENTED ------------------------------
 
+std::tuple<size_t, size_t> Str::find(const Str& substr) const
+{
+	// TODO : Implement algorithm
+	return std::tuple<size_t, size_t>();
+}
+
+std::tuple<size_t, size_t> Str::find(const char* substr) const
+{
+	// TODO : Implement algorithm
+	return std::tuple<size_t, size_t>();
+}
+
+std::tuple<size_t, size_t> Str::find(char substr) const
+{
+	// TODO: Implement algorithm
+	return std::tuple<size_t, size_t>();
+}
+
+Str& Str::append(const Str& str)
+{
+	// TODO: insert return statement here
+}
+
+Str& Str::insert(size_t position, const Str& str)
+{
+	// TODO: insert return statement here
+}
+
+Str& Str::erase(size_t position, size_t length)
+{
+	// TODO: insert return statement here
+}
+
+Str Str::format(const char* format, ...) const
+{
+	return Str();
+}
+
+Str Str::operator+(const Str& other) const
+{
+	return Str();
+}
+
+bool Str::operator==(const Str& other) const
+{
+	return false;
+}
+
+bool Str::operator!=(const Str& other) const
+{
+	return false;
+}
+
+//------------------------------------------------------
 
 char& Str::operator[](size_t index)
 {
@@ -153,6 +208,8 @@ Str& Str::operator+=(char str)
 	*this += str_arr;
 	return *this;
 }
+
+
 
 std::ostream& operator<<(std::ostream& stream, const Str& str)
 {
