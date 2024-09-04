@@ -99,43 +99,36 @@ Str Str::substr(size_t start, size_t end) const
 
 // TODO: YET TO BE IMPLEMENTED ------------------------------
 
-std::tuple<size_t, size_t> Str::find(const Str& substr) const
-{
-	// TODO : Implement algorithm
-	if (substr.len_ > this->len_)
-		return std::tuple<size_t, size_t>(-1, -1);
+std::tuple<size_t, size_t> Str::find(const Str& substr) const {
+	return find(substr.str_);
+}
 
-	size_t m = substr.len_;
+std::tuple<size_t, size_t> Str::find(const char* substr) const {
+	size_t m = std::strlen(substr);
 	size_t n = this->len_;
-	const char* haystack = this->str_;
-	const char* needle = substr.str_;
 
-	for (size_t i = 0; i <= n - m; i++)
-	{
+	if (m > n) {
+		return std::tuple<size_t, size_t>(-1, -1);
+	}
+
+	for (size_t i = 0; i <= n - m; ++i) {
 		size_t j = 0;
-		while (j < m && haystack[i + j] == needle[j]) {
-			j++;
+		while (j < m && this->str_[i + j] == substr[j]) {
+			++j;
 		}
-
-		if (j == m)
-			return std::tuple<size_t, size_t>(i, m - 1);
+		if (j == m) {
+			return std::tuple<size_t, size_t>(i, i + m); // Return start and end index
+		}
 	}
 
 	return std::tuple<size_t, size_t>(-1, -1);
 }
 
-//std::tuple<size_t, size_t> Str::find(const char* substr) const
-//{
-//	// TODO : Implement algorithm
-//	return std::tuple<size_t, size_t>();
-//}
-//
-//std::tuple<size_t, size_t> Str::find(char substr) const
-//{
-//	// TODO: Implement algorithm
-//	return std::tuple<size_t, size_t>();
-//}
-//
+std::tuple<size_t, size_t> Str::find(char substr) const {
+	char buffer[2] = { substr, '\0' };
+	return find(buffer);
+}
+
 //Str& Str::append(const Str& str)
 //{
 //	// TODO: insert return statement here
