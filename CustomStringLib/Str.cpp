@@ -1,6 +1,8 @@
 #include "Str.h"
+#include <iostream>
+#include <tuple>
 
-void Str::Copy(const char* source)
+void Str::Init(const char* source)
 {
 	if (source)
 	{
@@ -38,18 +40,18 @@ Str::Str()
 
 Str::Str(const char* str)
 {
-	Copy(str);
+	Init(str);
 }
 
 Str::Str(char str)
 {
 	static char str_arr[2] = { str, '\0' };
-	Copy(str_arr);
+	Init(str_arr);
 }
 
 Str::Str(const Str& other)
 {
-	Copy(other.str_);
+	Init(other.str_);
 }
 
 Str::~Str()	
@@ -100,55 +102,74 @@ Str Str::substr(size_t start, size_t end) const
 std::tuple<size_t, size_t> Str::find(const Str& substr) const
 {
 	// TODO : Implement algorithm
-	return std::tuple<size_t, size_t>();
+	if (substr.len_ > this->len_)
+		return std::tuple<size_t, size_t>(-1, -1);
+
+	size_t m = substr.len_;
+	size_t n = this->len_;
+	const char* haystack = this->str_;
+	const char* needle = substr.str_;
+
+	for (size_t i = 0; i <= n - m; i++)
+	{
+		size_t j = 0;
+		while (j < m && haystack[i + j] == needle[j]) {
+			j++;
+		}
+
+		if (j == m)
+			return std::tuple<size_t, size_t>(i, m - 1);
+	}
+
+	return std::tuple<size_t, size_t>(-1, -1);
 }
 
-std::tuple<size_t, size_t> Str::find(const char* substr) const
-{
-	// TODO : Implement algorithm
-	return std::tuple<size_t, size_t>();
-}
-
-std::tuple<size_t, size_t> Str::find(char substr) const
-{
-	// TODO: Implement algorithm
-	return std::tuple<size_t, size_t>();
-}
-
-Str& Str::append(const Str& str)
-{
-	// TODO: insert return statement here
-}
-
-Str& Str::insert(size_t position, const Str& str)
-{
-	// TODO: insert return statement here
-}
-
-Str& Str::erase(size_t position, size_t length)
-{
-	// TODO: insert return statement here
-}
-
-Str Str::format(const char* format, ...) const
-{
-	return Str();
-}
-
-Str Str::operator+(const Str& other) const
-{
-	return Str();
-}
-
-bool Str::operator==(const Str& other) const
-{
-	return false;
-}
-
-bool Str::operator!=(const Str& other) const
-{
-	return false;
-}
+//std::tuple<size_t, size_t> Str::find(const char* substr) const
+//{
+//	// TODO : Implement algorithm
+//	return std::tuple<size_t, size_t>();
+//}
+//
+//std::tuple<size_t, size_t> Str::find(char substr) const
+//{
+//	// TODO: Implement algorithm
+//	return std::tuple<size_t, size_t>();
+//}
+//
+//Str& Str::append(const Str& str)
+//{
+//	// TODO: insert return statement here
+//}
+//
+//Str& Str::insert(size_t position, const Str& str)
+//{
+//	// TODO: insert return statement here
+//}
+//
+//Str& Str::erase(size_t position, size_t length)
+//{
+//	// TODO: insert return statement here
+//}
+//
+//Str Str::format(const char* format, ...) const
+//{
+//	return Str();
+//}
+//
+//Str Str::operator+(const Str& other) const
+//{
+//	return Str();
+//}
+//
+//bool Str::operator==(const Str& other) const
+//{
+//	return false;
+//}
+//
+//bool Str::operator!=(const Str& other) const
+//{
+//	return false;
+//}
 
 //------------------------------------------------------
 

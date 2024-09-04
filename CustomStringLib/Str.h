@@ -8,7 +8,7 @@ private:
 	size_t len_;
 
 	// Helper Functions
-	void Copy(const char* source);
+	void Init(const char* source);
 	void FreeMem();
 
 public:
